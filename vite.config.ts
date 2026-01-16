@@ -14,9 +14,10 @@ export default defineConfig(({ mode }) => {
         outDir: 'dist',
         assetsDir: 'assets',
         sourcemap: false,
+        emptyOutDir: true,
         rollupOptions: {
-          output: {
-            manualChunks: undefined,
+          input: {
+            main: path.resolve(__dirname, 'index.html'),
           },
         },
       },

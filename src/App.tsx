@@ -25,6 +25,15 @@ const App: React.FC = () => {
   const [showLogin, setShowLogin] = useState(false);
   const [showRegister, setShowRegister] = useState(false);
 
+  // Error boundary catch
+  useEffect(() => {
+    const handleError = (error: ErrorEvent) => {
+      console.error('Global error:', error);
+    };
+    window.addEventListener('error', handleError);
+    return () => window.removeEventListener('error', handleError);
+  }, []);
+
   useEffect(() => {
     setIsMobileMenuOpen(false);
     window.scrollTo(0, 0);
