@@ -219,6 +219,11 @@ const App: React.FC = () => {
 
   const navGroups = ['Core', 'Personal', 'Growth', 'Community', 'Support'];
 
+  // Render nothing if we're on a protected route without auth (will be handled by redirect)
+  if (requiresAuth && !currentUser && activeSection !== AppSection.LANDING) {
+    return null;
+  }
+
   return (
     <div className="min-h-screen flex flex-col md:flex-row bg-slate-50">
       <header className="md:hidden flex items-center justify-between p-4 bg-[#009fe3] text-white sticky top-0 z-50 shadow-md">
