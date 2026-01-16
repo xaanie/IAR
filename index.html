@@ -29,8 +29,23 @@
     </style>
 </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <div style="padding: 20px; text-align: center;">
+        <p>Loading MSU Global Hub...</p>
+      </div>
+    </div>
     <script type="module" src="/src/index.tsx"></script>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-</body>
+    <script>
+      // Fallback: if app doesn't load in 5 seconds, show error
+      setTimeout(function() {
+        if (document.getElementById('root') && document.getElementById('root').children.length === 1) {
+          var loadingDiv = document.getElementById('root').querySelector('div');
+          if (loadingDiv && loadingDiv.textContent.includes('Loading')) {
+            document.getElementById('root').innerHTML = '<div style="padding: 40px; text-align: center; font-family: Arial;"><h1>Application Failed to Load</h1><p>Please check the browser console for errors.</p><button onclick="location.reload()" style="padding: 10px 20px; margin-top: 20px; cursor: pointer;">Reload Page</button></div>';
+          }
+        }
+      }, 5000);
+    </script>
+  </body>
 </html>
