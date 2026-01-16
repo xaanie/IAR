@@ -42,6 +42,15 @@ const App: React.FC = () => {
     setCurrentUser(user);
   }, [activeSection]);
 
+  // Error boundary catch
+  useEffect(() => {
+    const handleError = (error: ErrorEvent) => {
+      console.error('Global error:', error);
+    };
+    window.addEventListener('error', handleError);
+    return () => window.removeEventListener('error', handleError);
+  }, []);
+
   const handleLoginSuccess = () => {
     const user = getCurrentUser();
     setCurrentUser(user);
